@@ -7,6 +7,7 @@ import News from './components/News/news'
 import Layout from './HOC/Layout/layout'
 import NewsArticles from './components/Articles/News/Post/index'
 import VideoArticle from './components/Articles/Videos/video/index'
+import VideosMain from './components/Articles/Videos/VideosMain/index'
 
 class Routes extends Component {
 
@@ -20,6 +21,7 @@ class Routes extends Component {
                     <Route path = "/articles/:id" exact component = {NewsArticles}/>
                     <Route path = '/videos/:id' exact component = {VideoArticle}/>
                     <Route path = '/news' exact component = {News}/>
+                    <Route path = '/videos' exact component = {VideosMain}/>
                 </Switch>
             </Layout>
         );

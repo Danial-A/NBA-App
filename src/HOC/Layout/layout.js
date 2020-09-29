@@ -3,7 +3,6 @@ import './layout.css'
 
 //Components
 import Header from '../../components/Header/header'
-import { faBoxTissue } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../../components/Footer/footer'
 
 class Layout extends Component {
