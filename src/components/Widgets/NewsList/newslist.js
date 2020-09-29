@@ -26,7 +26,8 @@ class NewsList extends Component {
         if(this.state.teams.length < 1){
             axios.get(`${URL}/teams`).then(response =>{
                 this.setState({
-                    teams:response.data
+                    teams:response.data,
+                    start,end
                 })
             })
         }else{
@@ -40,7 +41,7 @@ class NewsList extends Component {
         })
     }
 
-    loadMore  =() =>{
+    loadmore  =() =>{
         let end = this.state.end + this.state.amount
         this.request(this.state.end, end);
     }
@@ -76,7 +77,7 @@ class NewsList extends Component {
     }
 
     render() {
-       console.log(this.state.teams)
+      
         return (
             <div>
             <TransitionGroup
@@ -86,7 +87,7 @@ class NewsList extends Component {
             </TransitionGroup>
             <Button
                 type = "loadmore"
-                loadMore = {() => this.loadMore()}
+                loadMore = {() => this.loadmore()}
                 cta = "Load More News"
             />
             </div>

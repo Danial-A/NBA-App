@@ -8,5 +8,6 @@
     padding: 9px;
     cursor: pointer;
     font-size: 18px;
-   
+    display: block;
+    text-decoration: none;
 }

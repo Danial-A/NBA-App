@@ -3,15 +3,23 @@ import {Route,Switch} from 'react-router-dom'
 
 //Components
 import Home from './components/Home/home'
+import News from './components/News/news'
 import Layout from './HOC/Layout/layout'
+import NewsArticles from './components/Articles/News/Post/index'
+import VideoArticle from './components/Articles/Videos/video/index'
 
 class Routes extends Component {
+
+  
+    
     render() {
         return (
             <Layout>
                 <Switch>
-                    <Route
-                        path = "/" exact component = {Home}/>
+                    <Route path = "/" exact component = {Home}/>
+                    <Route path = "/articles/:id" exact component = {NewsArticles}/>
+                    <Route path = '/videos/:id' exact component = {VideoArticle}/>
+                    <Route path = '/news' exact component = {News}/>
                 </Switch>
             </Layout>
         );

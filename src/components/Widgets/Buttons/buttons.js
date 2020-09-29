@@ -12,6 +12,12 @@ const Button = (props) => {
                 </div>
             )
             break;
+         case('LinkTo'):
+            template =(
+                <Link to= {props.LinkTo}
+                    className = {styles.blue_btn} >{props.cta}</Link>
+            )
+            break;
         default:
             template = null;
     }
