@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import {URL} from '../../../../config'
+import {firebaseDB, firebaseLooper, firebaseTeams} from '../../../../firebase'
 import Header from './header'
 import styles from '../videos.module.css'
 import VideosRelated from '../../../Widgets/videosList/VideoRelated/videosRelated';
@@ -14,29 +13,29 @@ class VideoArticle extends Component {
         related: []
     }
     componentWillMount(){
-        axios.get(`${URL}/videos?id=${this.props.match.params.id}`).then(response =>{
-            let article = response.data[0];
-            axios.get(`${URL}/teams?id=${article.team}`).then(response=>{
+
+        firebaseDB.ref(`videos/${this.props.match.params.id}`).once('value')
+        .then((snapshot)=>{
+            let article = snapshot.val();
+            firebaseTeams.orderByChild('id').equalTo('article.team').once('value')
+            .then((snapshot)=>{
+                const team = firebaseLooper(snapshot);
                 this.setState({
                     article,
-                    team:response.data
-                });
-
-            this.getRelated();
+                    team
+                })
             })
         })
     }
     getRelated = () =>{
     
-        axios.get(`${URL}/teams`).then(response =>{
-            let teams = response.data;
-            axios.get(`${URL}/videos?q=${this.state.team[0].city}&_limit=3`).then(response =>{
-                this.setState({
-                    teams,
-                    related:response.data
-                })
-            })
-        })
+        firebaseTeams.once('value')
+        .then((snapshot)=>{
+            const teams = firebaseLooper(snapshot);
+
+
+        }) 
+
     }
     render() {
         const article  = this.state.article;
